@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+    <style>
+      :root {
+        --booked: lawngreen;
+        --available: #17a0c3;
+      }
+      .seat-container {
+        display: grid;
+        place-content: center;
+        grid-gap: 2em;
+        grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .seat-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2em;
+        background: var(--available);
+      }
+      .seat-item.booked {
+        background: var(--booked);
+      }
+      .confirm-booking {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        place-content: center;
+        color: #fff;
+        display: none;
+      }
+      .confirm-booking.show {
+        display: grid;
+      }
+      .confirm-booking::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.7;
+        z-index: -1;
+      }
+      aside li:nth-child(1)::marker {
+        color: var(--booked);
+        font-size: 2.5em;
+      }
+      aside li:nth-child(2)::marker {
+        color: var(--available);
+        font-size: 2.5em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Creative Area</h1>
+
+    <div class="modal-section">
+      <label for="">Shift Timing</label>
+    </div>
+    <div id="cancel-booking">
+      <button>Cancel Booking</button>
+    </div>
+
+    <select name="seat-dropdown" id="seat-dropdown">
+      <option value="6-2.30">6 - 2.30</option>
+      <option value="11-8">11 - 8</option>
+      <option value="2.30-11.30">2.30 - 11.30</option>
+      <option value="10-6">10 - 6</option>
+    </select>
+
+    <section class="seat-container">
+      <div class="seat-item">H1</div>
+      <div class="seat-item booked">H2</div>
+      <div class="seat-item">H3</div>
+      <div class="seat-item">H4</div>
+      <div class="seat-item">H5</div>
+      <div class="seat-item">H6</div>
+      <div class="seat-item">H7</div>
+      <div class="seat-item">H8</div>
+      <div class="seat-item">H9</div>
+      <div class="seat-item">H10</div>
+      <div class="seat-item">H11</div>
+      <div class="seat-item">H12</div>
+      <div class="seat-item">H13</div>
+      <div class="seat-item">H14</div>
+      <div class="seat-item">H15</div>
+      <div class="seat-item">H16</div>
+      <div class="seat-item">H17</div>
+    </section>
+
+    <div class="confirm-booking modal" id="confirm-booking">
+      <div>
+        <button id="close-btn">Close</button>
+        <p>Do you want to confirm Booking</p>
+        <button id="confirm-btn">Yes</button>
+        <button id="cancel-btn">No</button>
+      </div>
+    </div>
+    <aside>
+      <ul>
+        <li>Booked</li>
+        <li>Available</li>
+      </ul>
+    </aside>
+    <script>
+      let seatItems = document.querySelectorAll(".seat-item");
+      let confirmModal = document.querySelector("#confirm-booking");
+      let closeBtn = document.querySelector("#close-btn");
+      let confirmBtn = document.querySelector("#confirm-btn");
+      let cancelBtn = document.querySelector("#cancel-btn");
+      let cancelBookingBtn = document.querySelector("#cancel-booking");
+
+      seatItems.forEach((item) => {
+        item.addEventListener("click", () => confirmBooking(item));
+      });
+
+      function confirmBooking(seatItem) {
+        //popup display
+        confirmModal.classList.add("show");
+        confirmBtn.addEventListener("click", () => seatBooking(seatItem));
+        cancelBtn.addEventListener("click", closeModal);
+      }
+
+      closeBtn.addEventListener("click", closeModal);
+      function closeModal() {
+        confirmModal.classList.remove("show");
+      }
+
+      function seatBooking(seat) {
+        confirmModal.classList.remove("show");
+        let childrens = [...seat.parentElement.children];
+        console.log(childrens);
+        childrens.forEach((children) => {
+          children.classList.remove("booked");
+        });
+
+        seat.classList.add("booked");
+        console.log(seat);
+      }
+      cancelBookingBtn.addEventListener("click", (item) => cancelBooking(item));
+
+      function cancelBooking(seat) {
+        let bookedSlot = document.querySelector(".seat-item.booked");
+        bookedSlot.classList.remove("booked");
+      }
+    </script>
+  </body>
+</html>

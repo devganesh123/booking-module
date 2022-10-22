@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+      :root {
+        --booked: lawngreen;
+        --available: #17a0c3;
+      }
+      .seat-container {
+        display: grid;
+        place-content: center;
+        grid-gap: 2em;
+        grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .seat-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2em;
+        background: var(--available);
+      }
+      .seat-item.booked {
+        background: var(--booked);
+      }
+      .confirm-booking {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        place-content: center;
+        color: #fff;
+        display: none;
+      }
+      .confirm-booking.show {
+        display: grid;
+      }
+      .confirm-booking::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.7;
+        z-index: -1;
+      }
+      aside li:nth-child(1)::marker {
+        color: var(--booked);
+        font-size: 2.5em;
+      }
+      aside li:nth-child(2)::marker {
+        color: var(--available);
+        font-size: 2.5em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Creative Area</h1>
+
+    <div class="modal-section">
+      <label for="">Shift Timing</label>
+    </div>
+    <div id="cancel-booking">
+      <button>Cancel Booking</button>
+    </div>
+
+    <select name="seat-dropdown" id="seat-dropdown">
+      <option value="6-2.30">6 - 2.30</option>
+      <option value="11-8">11 - 8</option>
+      <option value="2.30-11.30">2.30 - 11.30</option>
+      <option value="10-6">10 - 6</option>
+    </select>
+
+    <section class="seat-container">
+      <div class="seat-item">H1</div>
+      <div class="seat-item booked">H2</div>
+      <div class="seat-item">H3</div>
+      <div class="seat-item">H4</div>
+      <div class="seat-item">H5</div>
+      <div class="seat-item">H6</div>
+      <div class="seat-item">H7</div>
+      <div class="seat-item">H8</div>
+      <div class="seat-item">H9</div>
+      <div class="seat-item">H10</div>
+      <div class="seat-item">H11</div>
+      <div class="seat-item">H12</div>
+      <div class="seat-item">H13</div>
+      <div class="seat-item">H14</div>
+      <div class="seat-item">H15</div>
+      <div class="seat-item">H16</div>
+      <div class="seat-item">H17</div>
+    </section>
+
+    <div class="confirm-booking modal" id="confirm-booking">
+      <div>
+        <button id="close-btn">Close</button>
+        <form id="seatbooking-form">
+          <div class="form-input">
+            <label for="desk-id"> Desk Id </label>
+            <input type="text" readonly id="desk-id" name="deskId" />
+          </div>
+          <div class="form-input">
+            <label for="emp-id"> Emp Id </label>
+            <input type="text" id="emp-id" name="empId" />
+          </div>
+          <div class="form-input">
+            <label for="date"> date </label>
+            <input type="date" id="date" name="date" />
+          </div>
+          <div class="form-input">
+            <label for="time"> Time </label>
+            <select id="time" name="time">
+              <!-- <option selected="true" disabled>Select Time</option> -->
+              <option value="6">6-2</option>
+              <option value="2">2-11</option>
+              <option value="11">11-6</option>
+            </select>
+          </div>
+          <div class="form-input">
+            <button type="submit">Book Now</button>
+            <div id="cancel-btn">Cancel</div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <aside>
+      <ul>
+        <li>Booked</li>
+        <li>Available</li>
+      </ul>
+    </aside>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

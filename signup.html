@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form id="seatbooking-form">
+      <div class="form-input">
+        <label for="desk-id"> Desk Id </label>
+        <input type="text" id="desk-id" name="deskId" />
+      </div>
+      <div class="form-input">
+        <label for="emp-id"> Emp Id </label>
+        <input type="text" id="emp-id" name="empId" />
+      </div>
+      <div class="form-input">
+        <label for="date"> date </label>
+        <input type="date" id="date" name="date" />
+      </div>
+      <div class="form-input">
+        <label for="time"> Time </label>
+        <select id="time" name="time">
+          <option selected="true">Select Time</option>
+          <option value="6">6-2</option>
+          <option value="2">2-11</option>
+          <option value="11">11-6</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <button type="submit">Book Now</button>
+      </div>
+    </form>
+    <script>
+      const form = document.querySelector("#seatbooking-form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        console.log(formData);
+        const result = Object.fromEntries(formData);
+        const payload = JSON.stringify(result);
+        console.log(payload);
+
+        for (item of formData) {
+          console.log(item[0], item[1]);
+        }
+
+        fetch("https://httpbin.org/post", {
+          method: "POST",
+          body: payload,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((output) => console.log(output));
+      });
+    </script>
+  </body>
+</html>
