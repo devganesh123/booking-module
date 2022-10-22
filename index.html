@@ -30,7 +30,7 @@
       .seat-item.booked {
         background: var(--booked);
       }
-      .confirm-booking {
+      .modal-section {
         position: fixed;
         inset: 0;
         z-index: 2;
@@ -38,10 +38,10 @@
         color: #fff;
         display: none;
       }
-      .confirm-booking.show {
+      .modal-section.show {
         display: grid;
       }
-      .confirm-booking::before {
+      .modal-section::before {
         content: "";
         position: absolute;
         width: 100%;
@@ -98,7 +98,7 @@
       <div class="seat-item">H17</div>
     </section>
 
-    <div class="confirm-booking modal" id="confirm-booking">
+    <div class="modal-section modal" id="modal-section">
       <div>
         <button id="close-btn">Close</button>
         <form id="seatbooking-form">
@@ -108,11 +108,11 @@
           </div>
           <div class="form-input">
             <label for="emp-id"> Emp Id </label>
-            <input type="text" id="emp-id" name="empId" />
+            <input type="text" id="emp-id" name="empId" required />
           </div>
           <div class="form-input">
             <label for="date"> date </label>
-            <input type="date" id="date" name="date" />
+            <input type="date" id="date" name="date" required />
           </div>
           <div class="form-input">
             <label for="time"> Time </label>
@@ -128,6 +128,7 @@
             <div id="cancel-btn">Cancel</div>
           </div>
         </form>
+        <p id="message"></p>
       </div>
     </div>
     <aside>
@@ -136,6 +137,7 @@
         <li>Available</li>
       </ul>
     </aside>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./node_modules/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
   </body>
