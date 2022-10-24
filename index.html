@@ -79,29 +79,34 @@
     </select>
 
     <section class="seat-container">
-      <div class="seat-item">H1</div>
-      <div class="seat-item booked">H2</div>
-      <div class="seat-item">H3</div>
-      <div class="seat-item">H4</div>
-      <div class="seat-item">H5</div>
-      <div class="seat-item">H6</div>
-      <div class="seat-item">H7</div>
-      <div class="seat-item">H8</div>
-      <div class="seat-item">H9</div>
-      <div class="seat-item">H10</div>
-      <div class="seat-item">H11</div>
-      <div class="seat-item">H12</div>
-      <div class="seat-item">H13</div>
-      <div class="seat-item">H14</div>
-      <div class="seat-item">H15</div>
-      <div class="seat-item">H16</div>
-      <div class="seat-item">H17</div>
+      <div class="seat-col">
+        <div class="seat-item">H1</div>
+      </div>
+      <div class="seat-col">
+        <div class="seat-item">H2</div>
+      </div>
+      <div class="seat-col">
+        <div class="seat-item">H3</div>
+      </div>
+      <div class="seat-col">
+        <div class="seat-item">H4</div>
+      </div>
+      <div class="seat-col">
+        <div class="seat-item">H5</div>
+      </div>
+      <div class="seat-col">
+        <div class="seat-item">H6</div>
+      </div>
     </section>
 
     <div class="modal-section modal" id="modal-section">
       <div>
         <button id="close-btn">Close</button>
         <form id="seatbooking-form">
+          <div class="form-input">
+            <input type="radio" name="booking-category" value="0" />Normal
+            <input type="radio" name="booking-category" value="1" />Advanced
+          </div>
           <div class="form-input">
             <label for="desk-id"> Desk Id </label>
             <input type="text" readonly id="desk-id" name="deskId" />

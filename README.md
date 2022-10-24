@@ -21,3 +21,6 @@ Mobile or Desktop
    the seat has to turn to available
    b.1.6. Display which seat is allocated
    to which user
+
+Editing access
+Advanced Booking

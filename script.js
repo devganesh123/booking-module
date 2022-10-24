@@ -85,10 +85,14 @@ function seatBooking(seat) {
   modalContainer.classList.remove("show");
 
   // changing the seat status to booked
-  let childrens = [...seat.parentElement.children];
-  console.log(childrens);
-  childrens.forEach((children) => {
-    children.classList.remove("booked");
+  // let childrens = [...seat.parentElement.children];
+  // console.log(childrens);
+  // childrens.forEach((children) => {
+  //   children.classList.remove("booked");
+  // });
+
+  seatItems.forEach((item) => {
+    item.classList.remove("booked");
   });
   seat.classList.add("booked");
   console.log(seat);
