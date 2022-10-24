@@ -81,21 +81,15 @@ function closeModal() {
 }
 
 function seatBooking(seat) {
+  // resetting the form when response sends
+  form.reset();
   // close the modal when the response is sent
   modalContainer.classList.remove("show");
-
-  // changing the seat status to booked
-  // let childrens = [...seat.parentElement.children];
-  // console.log(childrens);
-  // childrens.forEach((children) => {
-  //   children.classList.remove("booked");
-  // });
 
   seatItems.forEach((item) => {
     item.classList.remove("booked");
   });
   seat.classList.add("booked");
-  console.log(seat);
 }
 
 cancelBookingBtn.addEventListener("click", (item) => cancelBooking(item));
