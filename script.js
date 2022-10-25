@@ -75,6 +75,7 @@ function formSubmit(e, seat) {
   //   .catch((error) => {
   //     throw error;
   //   });
+
   const url = "https://reqres.in/api/users";
   const fetchData = async () => {
     try {
