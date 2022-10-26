@@ -76,20 +76,22 @@ function formSubmit(e, seat) {
   //     throw error;
   //   });
 
-  const url = "https://reqres.in/api/users";
-  const fetchData = async () => {
-    try {
-      const response = await axios(url, {
-        headers: {
-          Accept: "application/json",
-        },
-      });
-      response.data.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log(fetchData());
+
+  // const url = "https://reqres.in/api/users";
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios(url, {
+  //       headers: {
+  //         Accept: "application/json",
+  //       },
+  //     });
+  //     console.log(response);
+ 
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // console.log(fetchData());
 
   const postUrl = "https://reqres.in/api/users";
   const postData = async () => {
@@ -102,7 +104,15 @@ function formSubmit(e, seat) {
         },
       });
       console.log(response);
+      if (response.status === 201) {
+        message.innerHTML = "<p>Your Booking is Success</p>";
+        setTimeout( ()=>{
+          seatBooking(seat)
+        },3000)
+            }
     } catch (error) {
+      message.innerHTML = "<p>Error Occured While booking</p>";
+
       console.log(error);
     }
   };
@@ -124,11 +134,14 @@ function seatBooking(seat) {
   // close the modal when the response is sent
   modalContainer.classList.remove("show");
   overlay.classList.remove("active");
+  message.innerHTML = "";
+
 
   seatItems.forEach((item) => {
     item.classList.remove("booked");
   });
   seat.classList.add("booked");
+
 }
 
 // cancelBookingBtn.addEventListener("click", (item) => cancelBooking(item));
